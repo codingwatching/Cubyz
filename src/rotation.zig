@@ -107,10 +107,11 @@ pub const RotationMode = struct { // MARK: RotationMode
 			}
 			damage -= oldBlock.blockResistance();
 			if (damage > 0) {
+				if (isProceduralItem and item.item.proceduralItem.isEffectiveOn(oldBlock)) {
+					return .{.yes_costsDurability = 1};
+				}
 				if (newBlock.typ == 0) {
-					if (isProceduralItem and item.item.proceduralItem.isEffectiveOn(oldBlock)) {
-						return .{.yes_costsDurability = 1};
-					} else return .yes;
+					return .yes;
 				} else if (item.item == .baseItem and oldBlock.replaceable()) {
 					if (item.item.baseItem.block() != null and item.item.baseItem.block().? == newBlock.typ) {
 						return .{.yes_costsItems = 1};
