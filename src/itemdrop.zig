@@ -7,7 +7,6 @@ const game = @import("game.zig");
 const World = game.World;
 const ServerWorld = main.server.ServerWorld;
 const graphics = @import("graphics.zig");
-const c = graphics.c;
 const items = @import("items.zig");
 const ItemStack = items.ItemStack;
 const ZonElement = @import("zon.zig").ZonElement;
@@ -24,6 +23,8 @@ const Vec3i = vec.Vec3i;
 const BinaryReader = main.utils.BinaryReader;
 const BinaryWriter = main.utils.BinaryWriter;
 const NeverFailingAllocator = main.heap.NeverFailingAllocator;
+
+const c = @import("c");
 
 const ItemDrop = struct { // MARK: ItemDrop
 	pos: Vec3d,
